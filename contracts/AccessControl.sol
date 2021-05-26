@@ -9,8 +9,17 @@ contract AccessControl {
         mapping(address => bool) internal _friends;
         mapping(address => bool) internal _recipient;
         uint256 internal _numberOfFriends;
+
+        mapping(address => uint256) internal _friendsBalances;
+        mapping(address => bool) internal _friendVoted;
+
+        // The variable _iscariotCount will count how many times the friends voted to retrieve their money if, 
+        // for exemple, they're not friend with the recipient anymore
+        // if 51% of the friends voted to retrive, then, _iscariot will be true, and then, the funds can be retrieved by all the friends.
+        uint256 internal _iscariotCount;
+        bool internal _iscariot;
     
-        constructor(address owner_)   {
+        constructor(address owner_) {
            _owner = owner_;
        }
 
@@ -68,4 +77,4 @@ contract AccessControl {
            _friends[account] = true;
            _numberOfFriends++;
        }
-       
+}

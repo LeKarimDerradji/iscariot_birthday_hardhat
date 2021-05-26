@@ -3,7 +3,7 @@
 pragma solidity ^0.8.0;
 
 import './AccessControl.sol';
-import '@openzeppelin/contracts/utils/Address'
+import '@openzeppelin/contracts/utils/Address.sol';
 
 contract Birthday is AccessControl  {
         
@@ -14,18 +14,13 @@ contract Birthday is AccessControl  {
         // Address of the doctor
         address private _doctor;
         
-        mapping(address => uint256) private _friendsBalances;
-        mapping(address => bool) private _friendVoted;
+        
         
         uint256 private _blockTime;
         uint256 private _unlockTime;
         uint256 private _birthDayDate;
         
-        // The variable _iscariotCount will count how many times the friends voted to retrieve their money if, 
-        // for exemple, they're not friend with the recipient anymore
-        // if 51% of the friends voted to retrive, then, _iscariot will be true, and then, the funds can be retrieved by all the friends.
-        uint256 private _iscariotCount;
-        bool private _iscariot;
+      
         
         
         // The variable _deadRecipient checks if the recipients is dead, if it is so, both _iscariot and _deadRecipient will have to be true
